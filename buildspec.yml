@@ -16,6 +16,9 @@ phases:
         - export KUBECONFIG=$HOME/.kube/config
   build:
     commands:
+      - aws s3 cp s3://eksws-codepipeline-codepipelineartifactbucket-1jtpejnjag38k/docker.key .docker.key
+      - docker login -u august --password-stdin < .docker.key
+      - rm .docker.key
       - docker build --tag $REPOSITORY_URI:$TAG .
 
   post_build:
