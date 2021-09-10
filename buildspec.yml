@@ -16,7 +16,7 @@ phases:
         - export KUBECONFIG=$HOME/.kube/config
   build:
     commands:
-      - aws s3 cp s3://augustsimonellibucket.s3.us-west-2.amazonaws.com/docker.key .docker.key
+      - aws s3 cp s3://augustsimonellibucket/docker.key .docker.key
       - docker login -u august --password-stdin < .docker.key
       - rm .docker.key
       - docker build --tag $REPOSITORY_URI:$TAG .
